@@ -196,34 +196,6 @@ Joint/finalize flags:
 | `--finalize-hmm-iters` | Extra pure-HMM training after joint phase. |
 | `--finalize-transition-entropy` | Positive penalty to sharpen transition rows. |
 
-## Visualizing a Saved Run
-
-Saved runs live under `runs/phase1_<timestamp>/` unless `--out-dir` is set.
-
-Regenerate all plots:
-
-```powershell
-python -m examples.visualize_run runs\phase1_YYYYMMDD_HHMMSS
-```
-
-Render only graph plots:
-
-```powershell
-python -m examples.visualize_run runs\phase1_YYYYMMDD_HHMMSS --transition-only
-```
-
-Try multiple thresholds:
-
-```powershell
-python -m examples.visualize_run runs\phase1_YYYYMMDD_HHMMSS --transition-only --thresholds 0.05,0.1,0.2,0.3
-```
-
-Important Windows note: if Unicode output fails in PowerShell, set:
-
-```powershell
-$env:PYTHONIOENCODING='utf-8'
-```
-
 ## Output Artifacts
 
 The main demo writes plots and metadata under the run directory.
@@ -231,17 +203,10 @@ The main demo writes plots and metadata under the run directory.
 | Artifact | Meaning |
 | --- | --- |
 | `loss_curves.png` | VQ-VAE and HMM loss curves. |
-| `rollout_edge_coverage.png` | Physical grid edge traversal counts from rollout collection. Edge thickness/color shows how often each room-to-room connection was crossed. |
 | `reconstructions.png` | Input/reconstruction/token examples. |
 | `codebook_usage.png` | Histogram of token usage. |
 | `clone_purity.png` | Confusion between decoded clone states and ground-truth cells. |
-| `token_cell_heatmap.png` | Token-cell alignment diagnostics. |
-| `transition_graph.png` | Raw clone-state graph using generic igraph layout. |
 | `viterbi_path_graph.png` | Count-thresholded graph of clone-state transitions actually taken by the decoded Viterbi path. |
-| `projected_physical_graph.png` | Clone graph collapsed to physical cell graph. Grid-specific benchmark plot. |
-| `clone_physical_layout_graph.png` | Clone-state graph anchored near assigned physical cells. Same-place clones are close together. |
-| `learned_map_graph.png` | Generic learned map plotter. Does not inherently require grid layout. |
-| `metrics.json` | Run metrics and configuration. |
 | `model/` | Saved VQ-VAE + HMM model. |
 | `episodes.npz` | Saved episode data for replay/visualization. |
 
