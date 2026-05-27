@@ -1,0 +1,11 @@
+numpy
+matplotlib
+numba
+tqdm
+jupyter
+jupytext
+scipy
+igraph
+torch
+tensorflow>=2.10
+pytest
