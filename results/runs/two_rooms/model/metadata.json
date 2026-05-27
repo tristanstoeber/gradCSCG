@@ -1,0 +1,55 @@
+{
+  "image_shape": [
+    28,
+    28,
+    1
+  ],
+  "codebook_size": 10,
+  "embedding_dim": 32,
+  "num_clones": 20,
+  "num_actions": 4,
+  "commitment_beta": 0.25,
+  "ema_decay": 0.99,
+  "base_filters": 32,
+  "compact_tokens": false,
+  "dead_code_threshold": 0.0,
+  "clone_counts": [
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15
+  ],
+  "active_clone_counts": [
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15
+  ],
+  "clone_count_token_labels": [
+    7,
+    0,
+    8,
+    4,
+    1,
+    9,
+    2,
+    6,
+    6,
+    3
+  ],
+  "active_vocab_size": 10,
+  "has_hmm": true,
+  "format_version": 1
+}
