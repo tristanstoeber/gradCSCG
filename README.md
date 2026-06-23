@@ -67,7 +67,7 @@ flowchart LR
 ### 3.2 Perceptual front-end: VQ-VAE
 
 **Encoder and quantization.**
-A convolutional encoder $E_\phi:\mathcal{X}\to\mathbb{R}^{D}$ maps each image to a latent $z_t=E_\phi(x_t)$. A codebook $\{e_k\}_{k=1}^{K}$, $e_k\in\mathbb{R}^{D}$, defines a discrete token by nearest-neighbour assignment,
+A convolutional encoder $E_\phi:\mathcal{X}\to\mathbb{R}^{D}$ maps each image to a latent $z_t=E_\phi(x_t)$. A codebook $`\{e_k\}_{k=1}^{K}`$, $e_k\in\mathbb{R}^{D}$, defines a discrete token by nearest-neighbour assignment,
 
 $$k_t=\arg\min_{k\in\{1,\dots,K\}}\;\lVert z_t-e_k\rVert_2^2, \qquad q_t=e_{k_t},$$
 
