@@ -1,6 +1,6 @@
 # Learning Cognitive Maps from Visual Experience: A Differentiable VQ-VAE and Gradient-Trained Cloned HMM Pipeline
 
-**Arash Nikzad**<sup>1</sup>, **Sasan Sarbishegi**, **Ali Dasmeh**<sup>2</sup>, **Parsa Gharavi**<sup>1</sup>, **Erik Husom**<sup>3</sup>, **Sagar Sen**<sup>3</sup>, **Andrew Lehr**<sup>4,5</sup>, **Olivier Penacchio**<sup>6</sup>, **Ana Clemente**<sup>7</sup>, **Tristan Stöber**<sup>5,8,9</sup>
+**Arash Nikzad**<sup>1</sup>, **Sasan Sarbishegi**, **Ali Dasmeh**<sup>2</sup>, **Parsa Gharavi**<sup>1</sup>, **Erik Husom**<sup>3</sup>, **Sagar Sen**<sup>3</sup>, **Andrew B. Lehr**<sup>4,5</sup>, **Olivier Penacchio**<sup>6</sup>, **Ana Clemente**<sup>7</sup>, **Tristan M. Stöber**<sup>5,8,9</sup>
 
 <sup>1</sup> Goethe University Frankfurt, Frankfurt, Germany  
 <sup>2</sup> Max Planck Institute for Human Development, Berlin, Germany  
