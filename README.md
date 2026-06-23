@@ -296,7 +296,7 @@ We study five environments of increasing difficulty (Table 2): `aliased`, a $4\t
 
 ### 4.3 Protocol
 
-Trajectories are action-conditioned random walks (4–10 episodes of 10,000 steps). Each run executes VQ-VAE warmup, joint training (Phase 2/2.5) and finalization, then is evaluated on a held-out episode with the metrics of Section 3.9. An optional, benchmark-only auxiliary digit-classification loss may be used during VQ-VAE warmup; it is disableable, since in a general environment object classes are unknown.
+Trajectories are action-conditioned random walks (4–10 episodes of 10,000 steps). Each run executes VQ-VAE warmup, joint training and finalization, then is evaluated on a held-out episode with the metrics of Section 3.9. An optional, benchmark-only auxiliary digit-classification loss may be used during VQ-VAE warmup; it is disableable, since in a general environment object classes are unknown.
 
 ---
 
