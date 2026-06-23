@@ -202,7 +202,7 @@ $$\begin{aligned}
 \delta_{t+1}(j) &= \max_{i}\left[\delta_t(i)+\log T_{a_t,i,j}\right] + \log B_{j,o_{t+1}},
 \end{aligned}$$
 
-with backpointers $\psi_{t+1}(j)=\arg\max_i[\delta_t(i)+\log T_{a_t,i,j}]$ and traceback $s^\star_T=\arg\max_j\delta_T(j)$, $s^\star_t=\psi_{t+1}(s^\star_{t+1})$. The decoded path $s^\star_{1:T}$ is the basis of all evaluation.
+with $s^\star_T=\arg\max_j\delta_T(j)$, $s^\star_t=\psi_{t+1}(s^\star_{t+1})$ determining the most likely hidden state at time $t$. The decoded path $s^\star_{1:T}$ is the basis of all evaluation.
 
 ### 3.8 Token compaction and clone allocation
 
