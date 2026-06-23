@@ -178,9 +178,9 @@ $$\mathcal{L}_{\mathrm{div}}=\log K-H(\bar\rho)\;\ge\;0$$
 vanishes only at uniform usage and counteracts codebook collapse.
 
 **Anti-collapse safeguards and finalization.**
-During Phase 2 we monitor codebook perplexity and keep the highest-perplexity checkpoint; optional $\lambda$-throttling, rollback, and dead-code revival provide further protection. A short *finalization* phase then freezes the encoder and refines $(\pi,\Theta)$ on hard tokens with the unnormalized loss, optionally with a transition-entropy regularizer $-\eta\sum_{a,i}H(T_{a,i,\cdot})$ to sharpen transition rows. Algorithm 1 summarizes one joint step.
+During Phase 2 we monitor codebook perplexity and keep the highest-perplexity checkpoint; optional $\lambda$-throttling, rollback, and dead-code revival provide further protection. A short *finalization* phase then freezes the encoder and refines $(\pi,\Theta)$ on hard tokens with the unnormalized loss, optionally with a transition-entropy regularizer $-\eta\sum_{a,i}H(T_{a,i,\cdot})$ to sharpen transition rows. the follwingn algorithm summarizes one joint step.
 
-> **Algorithm 1 — One joint training step**
+> **Algorithm — One joint training step**
 >
 > **Require:** image chunk $x_{1:T}$, actions $a_{1:T-1}$, weights $\beta,\lambda_t,\alpha_{\mathrm{div}}$, temperature $\tau$
 >
