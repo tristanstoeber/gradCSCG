@@ -62,7 +62,7 @@ flowchart LR
     soft -. grad .-> enc
 ```
 
-***Figure 1: The neuralCSCG pipeline.*** *Solid arrows: forward computation. Dashed arrows: gradient flow. The encoder feeds both a reconstruction branch (hard quantization $\tilde q_t$ + decoder) and a sequence branch (soft codebook posterior $\rho_t$ + differentiable cloned-HMM forward pass). Because the HMM likelihood is differentiable in $\rho_t$, the topological objective $\mathcal{L}_{\mathrm{HMM}}$ shapes the encoder. The codebook itself is updated by EMA, not by gradients.*
+***Figure 1: The gradCSCG pipeline.*** *Solid arrows: forward computation. Dashed arrows: gradient flow. The encoder feeds both a reconstruction branch (hard quantization $\tilde q_t$ + decoder) and a sequence branch (soft codebook posterior $\rho_t$ + differentiable cloned-HMM forward pass). Because the HMM likelihood is differentiable in $\rho_t$, the topological objective $\mathcal{L}_{\mathrm{HMM}}$ shapes the encoder. The codebook itself is updated by EMA, not by gradients.*
 
 ### 3.2 Perceptual front-end: VQ-VAE
 
@@ -71,7 +71,7 @@ A convolutional encoder $E_\phi:\mathcal{X}\to\mathbb{R}^{D}$ maps each image to
 
 $$k_t=\arg\min_{k\in\{1,\dots,K\}}\;\lVert z_t-e_k\rVert_2^2, \qquad q_t=e_{k_t},$$
 
-where the squared distance is computed as $\lVert z-e_k\rVert_2^2=\lVert z\rVert_2^2-2\langle z,e_k\rangle+\lVert e_k\rVert_2^2$. Gradients cross the non-differentiable $\arg\min$ by the straight-through estimator [6],
+where the squared distance is computed as $\lVert z-e_k\rVert_2^2=\lVert z\rVert_2^2-2\langle z,e_k\rangle+\lVert e_k\rVert_2^2$. Gradients cross the non-differentiable $\arg\min$ by the straight-through estimator [18],
 
 $$\tilde q_t = z_t + \mathrm{sg}(q_t-z_t),$$
 
@@ -135,7 +135,7 @@ $$\mathcal{L}_{\mathrm{HMM}}=-\tfrac{1}{|\mathcal{B}|}\sum_{(o,a)\in\mathcal{B}}
 
 ### 3.4 Gradient-based training of the cloned HMM
 
-Unlike the classical EM training of cloned HMMs, we evaluate the forward recursion and NLL loss as a single differentiable, log-space computational graph (a masked time recursion over padded minibatches) and optimize $(\pi,\Theta)$ directly by stochastic gradient descent with Adam [8]. Log-space arithmetic with $\mathop{\mathrm{logsumexp}}$ keeps the recursion numerically stable over long episodes. This gradient formulation is what makes the sequence model composable with a neural front-end.
+Unlike the classical EM training of cloned HMMs, we evaluate the forward recursion and NLL loss as a single differentiable, log-space computational graph (a masked time recursion over padded minibatches) and optimize $(\pi,\Theta)$ directly by stochastic gradient descent with Adam [19]. Log-space arithmetic with $\mathop{\mathrm{logsumexp}}$ keeps the recursion numerically stable over long episodes. This gradient formulation is what makes the sequence model composable with a neural front-end.
 
 ### 3.5 Differentiable soft-emission coupling
 
@@ -153,8 +153,7 @@ with the sink assigned $\log\rho_t(\bot)=-\infty$. The resulting log-likelihood 
 
 ### 3.6 Joint objective and loss balancing
 
-**Training regimes.**
-We use a deliberate progression. *Phase 1 (stagewise)* trains the VQ-VAE alone, then trains the HMM on hard tokens. *Phase 2 (joint)* optimizes encoder, decoder and $(\pi,\Theta)$ together under a combined objective. *Phase 2.5* adds loss-balancing terms that make Phase 2 stable.
+We train the model in three phases. First, the VQ-VAE is trained independently to initialize the visual encoder and decoder and obtain stable discrete representations. Second, the complete model, comprising both the VQ-VAE and the HMM, is trained jointly in an end-to-end manner with stochastic gradient descent. Third, the VQ-VAE is frozen and the HMM is fine-tuned using hard emissions, allowing the temporal model to refine its transition structure while operating on discrete visual assignments.
 
 **Combined objective.**
 At joint step $t$,
@@ -196,7 +195,7 @@ During Phase 2 we monitor codebook perplexity and keep the highest-perplexity ch
 
 ### 3.7 Decoding
 
-The maximum-a-posteriori state path is obtained by the Viterbi recursion [7]:
+The maximum-a-posteriori state path is obtained by the Viterbi recursion [15]:
 
 $$\begin{aligned}
 \delta_1(j) &= \log\bar\pi_j+\log B_{j,o_1},\\
@@ -254,7 +253,7 @@ The encoder is three convolutional layers (strides $2,2,1$) followed by global a
 | Action alphabet | $A$ | 4 |
 | Clones per token | $C_k$ | 5–20 |
 | Latent states | $N$ | 21–201 |
-| ***Joint training (Phase 2 / 2.5)*** | | |
+| ***Joint training*** | | |
 | Softmax temperature | $\tau$ | 1.0 |
 | HMM-loss weight | $\lambda$ | 1.0 |
 | Anneal horizon | $T_{\mathrm{anneal}}$ | iters/4 |
@@ -268,7 +267,7 @@ The encoder is three convolutional layers (strides $2,2,1$) followed by global a
 | Transition-entropy weight | $\eta$ | $10^{-3}$ |
 | Minibatch | — | 8 |
 | ***Optimization and data*** | | |
-| Optimizer | — | Adam [8] |
+| Optimizer | — | Adam [19] |
 | VQ-VAE / joint learning rate | — | $3\times10^{-4}$ |
 | Finalization learning rate | — | $10^{-2}$ |
 | Episodes × steps | — | $(4\text{–}10)\times10{,}000$ |
