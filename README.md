@@ -29,7 +29,7 @@ The bottleneck is that CSCG is trained by Expectation–Maximization over a fixe
 
 We resolve this by reimplementing the cloned HMM as a single differentiable, gradient-trained computation [11] in TensorFlow, which lets us co-train it with a vector-quantized variational autoencoder (VQ-VAE). We demonstrate that this approach preserves CSCG's expressivity while enabling it to handle sensory variability and complexity in environments composed of MNIST digits.
 
-**Contributions.**
+**Contributions**
 
 1. An **end-to-end pipeline** that maps raw images to a topological cognitive map by coupling a VQ-VAE to an action-conditioned cloned HMM (Section 3).
 2. A **differentiable, soft-emission cloned HMM**: the forward algorithm is implemented as a differentiable log-space computation, so the sequence objective can be trained by backpropagation and gradients reach the perceptual front-end (Sections 3.3–3.5).
