@@ -236,7 +236,7 @@ From the empirical token/place co-occurrence we report $H(\text{token}\mid\text{
 
 ### 3.10 Implementation and hyperparameters
 
-The encoder is three convolutional layers (strides $2,2,1$) followed by global average pooling and a dense projection to $\mathbb{R}^{D}$; the decoder mirrors it. The HMM forward pass, soft forward pass and training steps are implemented as compiled TensorFlow graphs; Viterbi decoding is eager. Transition logits are initialized with a bias toward the sink state so probability mass is well-defined before training. Table 1 lists all hyperparameters.
+The encoder is composed of three convolutional layers with strides \(2,2,1\), followed by global average pooling and a dense projection to $\mathbb{R}^{D}$; the decoder uses the corresponding mirrored architecture. The gradCSCG forward pass, soft forward pass, and training steps are implemented as compiled TensorFlow graphs. Viterbi decoding is performed outside the compiled graph during inference. Transition logits are initialized with a bias toward the sink state so probability mass is well-defined before training. Table 1 lists all hyperparameters.
 
 **Table 1.** Hyperparameters. Ranges span the five environments of Section 4.
 
