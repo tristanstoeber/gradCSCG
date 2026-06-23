@@ -276,9 +276,23 @@ The encoder is composed of three convolutional layers with strides \(2,2,1\), fo
 
 ## 4. Experimental Setup
 
-### 4.1 The MNIST grid-world benchmark
+### 4.1 The MNIST Grid-World Benchmark
 
-The benchmark is a 2-D grid in which every cell carries a digit class. *Visiting a cell returns a randomly drawn MNIST image [9] of that digit*, so the same place never looks identical twice and cells sharing a digit are perceptually aliased. The agent has four actions (up, down, left, right) with sticky walls. Ground-truth topology is known exactly, which makes the benchmark a controlled testbed for topology recovery.
+We consider a two-dimensional grid-world environment similar to the controlled spatial benchmark used in [2]. The environment is a finite rectangular room composed of discrete cells. At each time step, the agent occupies one cell $v_t\in\mathcal{V}$ and receives an observation associated with that cell. The agent then takes an action $a_t\in\{\text{up},\text{down},\text{left},\text{right}\}$, which moves it to a neighboring cell according to the grid connectivity. Movements are constrained by the walls and boundaries of the room; during random-walk data collection, actions that would move the agent outside the valid grid are not selected.
+
+The agent's experience is therefore a sequence of observation-action pairs,
+$$
+(x_1,a_1),(x_2,a_2),\dots,(x_T,a_T),
+$$
+where $x_t$ denotes the sensory observation received at time $t$, and $a_t$ denotes the action taken before the next observation. The true position of the agent is not provided to the model. The learning problem is to infer the latent spatial topology from the temporal regularities in the observation-action stream.
+
+To introduce perceptual complexity, we replace symbolic cell observations with MNIST-based visual observations. Each grid cell $v$ is assigned a digit label $d(v)\in\{0,\dots,9\}$. When the agent visits cell $v_t$, it receives a randomly sampled MNIST image from the corresponding digit class,
+$$
+x_t \sim \mathcal{D}_{d(v_t)},
+$$
+where $\mathcal{D}_{d(v_t)}$ is the empirical MNIST distribution for digit $d(v_t)$. Thus, repeated visits to the same cell do not produce identical pixel observations, while different cells assigned the same digit class can generate visually similar observations.
+
+This extension preserves the controlled topology-recovery setting of the original grid-world benchmark while adding a perceptual front end. In the symbolic setting, the observation token is given directly. In our benchmark, the model must first map variable high-dimensional images to stable discrete observation tokens before using temporal context and actions to resolve aliasing. This makes the task more challenging and provides a more realistic test of whether temporal structure learning can be coupled with learned visual representations.
 
 ### 4.2 Environments
 
