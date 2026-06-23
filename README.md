@@ -109,7 +109,7 @@ $$\hat n_k=\frac{n_k+\epsilon}{\left(\sum_{k'}n_{k'}\right)+K\epsilon}\left(\sum
 **Soft codebook posterior.**
 For the differentiable coupling (Section 3.5) the encoder also emits a temperature-controlled posterior over the codebook,
 
-$$\log\rho_t(k) = \log\mathrm{softmax}_{k}\left(-\lVert z_t-e_k\rVert_2^2/\tau\right),$$
+$$\log\rho_t(k) = \log{softmax}_{k}\left(-\lVert z_t-e_k\rVert_2^2/\tau\right),$$
 
 which is differentiable in $z_t$. As $\tau\to0$, $\rho_t$ concentrates on $k_t$ and this recovers the hard assignment.
 
