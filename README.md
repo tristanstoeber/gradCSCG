@@ -122,7 +122,7 @@ $$\bar\pi=\mathrm{softmax}(\pi),\qquad T_{a,i,j}=\mathrm{softmax}_{j}\left(\Thet
 All learning resides in $(\pi,\Theta)$; emissions are fixed.
 
 **Forward likelihood.**
-Writing $$\mathop{\mathrm{logsumexp}}_i u_i=\log\sum_i e^{u_i}$$, the log-forward messages for an episode $(o_{1:T},a_{1:T-1})$ obey
+Writing $`\mathop{\mathrm{logsumexp}}_i u_i=\log\sum_i e^{u_i}`$, the log-forward messages for an episode $(o_{1:T},a_{1:T-1})$ obey
 
 $$\begin{aligned}
 \log\alpha_1(j) ={}& \log\bar\pi_j+\log B_{j,o_1},\\
