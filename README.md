@@ -28,7 +28,8 @@ Evaluating future scenarios by mental time travel is a hallmark of intelligence 
 2.	Stachenfeld, K. L., Botvinick, M. M. & Gershman, S. J. The hippocampus as a predictive map. Nat. Neurosci. 20, 1643–1653 (2017). 
 3.	Whittington, J. C. R., McCaffary, D., Bakermans, J. J. W. & Behrens, T. E. J. How to build a cognitive map. Nat. Neurosci. 25, 1257–1272 (2022). 
 4.	Cone, I. & Clopath, C. Latent representations in hippocampal network model co-evolve with behavioral exploration of task structure. Nat. Commun. 15, 687 (2024). 
-5.	Chandra, S., Sharma, S., Chaudhuri, R. & Fiete, I. Episodic and associative memory from spatial scaffolds in the hippocampus. Nature 1–13 (2025) doi:10.1038/s41586-024-08392-y. --> and artificial intelligence (AI)  <!--6.	Lake, B. M., Ullman, T. D., Tenenbaum, J. B. & Gershman, S. J. Building machines that learn and think like people. Behav. Brain Sci. 40, (2017). 
+5.	Chandra, S., Sharma, S., Chaudhuri, R. & Fiete, I. Episodic and associative memory from spatial scaffolds in the hippocampus. Nature 1–13 (2025) doi:10.1038/s41586-024-08392-y. --> and artificial intelligence (AI)  
+<!--6.	Lake, B. M., Ullman, T. D., Tenenbaum, J. B. & Gershman, S. J. Building machines that learn and think like people. Behav. Brain Sci. 40, (2017). 
 7.	Diester, I. et al. Internal world models in humans, animals, and AI. Neuron 112, 2265–2268 (2024). 
 8.	Friston, K. et al. World model learning and inference. Neural Netw. 144, 573–590 (2021).
 -->
