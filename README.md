@@ -131,7 +131,7 @@ $$\begin{aligned}
 
 and the episode log-likelihood is $\ell(o_{1:T}\mid a_{1:T-1})=\mathop{\mathrm{logsumexp}}_{j}\log\alpha_T(j)$. The training loss is the mean negative log-likelihood (NLL)
 
-$$\mathcal{L}_{\mathrm{HMM}}=-\tfrac{1}{|\mathcal{B}|}\sum_{(o,a)\in\mathcal{B}}\ell(o_{1:T}\mid a_{1:T-1}).$$
+$$\mathcal{L}_{\mathrm{gradCSCG}}=-\tfrac{1}{|\mathcal{B}|}\sum_{(o,a)\in\mathcal{B}}\ell(o_{1:T}\mid a_{1:T-1}).$$
 
 ### 3.4 Gradient-based training of the cloned HMM
 
@@ -163,7 +163,7 @@ $$\mathcal{L}_{\mathrm{joint}} = \mathcal{L}_{\mathrm{rec}} + \beta\,\mathcal{L}
 **Length normalization.**
 The raw NLL grows as $O(T)$, which on long episodes dwarfs the $O(1)$ reconstruction term and collapses the codebook. We therefore use the per-step NLL
 
-$$\widetilde{\mathcal{L}}_{\mathrm{HMM}}=-\tfrac{1}{|\mathcal{B}|}\sum \tfrac{1}{T}\,\ell^{s}(o_{1:T}\mid a_{1:T-1}).$$
+$$\widetilde{\mathcal{L}}_{\mathrm{gradCSCG}}=-\tfrac{1}{|\mathcal{B}|}\sum \tfrac{1}{T}\,\ell^{s}(o_{1:T}\mid a_{1:T-1}).$$
 
 **Weight annealing.**
 The sequence-loss weight is ramped linearly so the codebook stabilizes under reconstruction before topological pressure turns on:
