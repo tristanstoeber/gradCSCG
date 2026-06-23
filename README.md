@@ -281,9 +281,11 @@ The encoder is composed of three convolutional layers with strides \(2,2,1\), fo
 We consider a two-dimensional grid-world environment similar to the controlled spatial benchmark used in [2]. The environment is a finite rectangular room composed of discrete cells. At each time step, the agent occupies one cell $v_t\in\mathcal{V}$ and receives an observation associated with that cell. The agent then takes an action $a_t\in\{\text{up},\text{down},\text{left},\text{right}\}$, which moves it to a neighboring cell according to the grid connectivity. Movements are constrained by the walls and boundaries of the room; during random-walk data collection, actions that would move the agent outside the valid grid are not selected.
 
 The agent's experience is therefore a sequence of observation-action pairs,
+
 $$
 (x_1,a_1),(x_2,a_2),\dots,(x_T,a_T),
 $$
+
 where $x_t$ denotes the sensory observation received at time $t$, and $a_t$ denotes the action taken before the next observation. The true position of the agent is not provided to the model. The learning problem is to infer the latent spatial topology from the temporal regularities in the observation-action stream.
 
 To introduce perceptual complexity, we replace symbolic cell observations with MNIST-based visual observations. Each grid cell $v$ is assigned a digit label $d(v)\in\{0,\dots,9\}$. When the agent visits cell $v_t$, it receives a randomly sampled MNIST image from the corresponding digit class,
