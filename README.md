@@ -286,7 +286,7 @@ $$
 (x_1,a_1),(x_2,a_2),\dots,(x_T,a_T),
 $$
 
-where $x_t$ denotes the sensory observation received at time $t$, and $a_t$ denotes the action taken before the next observation. The true position of the agent is not provided to the model. The learning problem is to infer the latent spatial topology from the temporal regularities in the observation-action stream.
+where $x_t$ denotes the sensory observation received at time $t$, and $a_t$ denotes the action taken before the next observation. The true position of the agent is not provided to the model. The learning problem is to infer the latent spatial topology and explicit map of the environment.
 
 To introduce perceptual complexity, we replace symbolic cell observations with MNIST-based visual observations. Each grid cell $v$ is assigned a digit label $d(v)\in\{0,\dots,9\}$. When the agent visits cell $v_t$, it receives a randomly sampled MNIST image from the corresponding digit class,
 $$
