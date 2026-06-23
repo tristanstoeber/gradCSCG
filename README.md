@@ -325,11 +325,15 @@ The VQ-VAE produces a clean, near-deterministic discretization. Across environme
 
 ### 5.2 Clone-state purity
 
-Decoded clone states map cleanly to physical places. The visit-weighted state-to-place purity is 0.95–0.98 across the four fully scored environments (Table 4), and every visited place is represented by at least one clone. The decoded clone graph (Figure 4) exposes the recovered topology directly: nodes are clone states drawn as the MNIST digit they represent, and edges are the action-conditioned transitions actually taken.
+Decoded clone states map cleanly to physical places. The visit-weighted state-to-place purity is 0.95–0.98 across the four fully scored environments (Table 4), and every visited place is represented by at least one clone (Figure 4). The decoded clone graph (Figure 5) exposes the recovered topology directly: nodes are clone states drawn as the MNIST digit they represent, and edges are the action-conditioned transitions actually taken.
+
+![Clone-state to place purity for two_rooms.](figures/clone_purity.png)
+
+*Figure 4: Clone-state purity for `two_rooms`. Each decoded clone state (row) is shown against the ground-truth places it is decoded at (columns); almost every clone concentrates on a single place, which is the high visit-weighted state-to-place purity reported in Table 4.*
 
 ![Decoded clone-state graph for two_rooms.](figures/viterbi_graph.png)
 
-*Figure 4: Decoded clone-state graph for `two_rooms`; each node is drawn as an MNIST sample of the digit it represents, edges are Viterbi-path transitions. The two-room layout is visible in the latent graph.*
+*Figure 5: Decoded clone-state graph for `two_rooms`; each node is drawn as an MNIST sample of the digit it represents, edges are Viterbi-path transitions. The two-room layout is visible in the latent graph.*
 
 ### 5.3 Topological map recovery
 
@@ -359,11 +363,11 @@ Table 4 collects all results. The pipeline succeeds on every environment, includ
 
 ### 5.5 Training dynamics
 
-Figure 5 shows the loss trajectories. Reconstruction is stable across joint training; the length-normalized HMM term decreases steadily once $\lambda_t$ ramps in; and the finalization phase produces a further sharp drop in HMM NLL with the encoder frozen — consistent with the role of the balancing terms in Section 3.6.
+Figure 6 shows the loss trajectories. Reconstruction is stable across joint training; the length-normalized HMM term decreases steadily once $\lambda_t$ ramps in; and the finalization phase produces a further sharp drop in HMM NLL with the encoder frozen — consistent with the role of the balancing terms in Section 3.6.
 
 ![Training curves for two_rooms.](figures/loss_curves.png)
 
-*Figure 5: Training curves for `two_rooms`: VQ-VAE warmup, joint-phase components (reconstruction, commitment, length-normalized HMM term, diversity), and the pure-HMM finalization phase.*
+*Figure 6: Training curves for `two_rooms`: VQ-VAE warmup, joint-phase components (reconstruction, commitment, length-normalized HMM term, diversity), and the pure-HMM finalization phase.*
 
 ---
 
