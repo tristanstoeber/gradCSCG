@@ -1,16 +1,18 @@
 # Learning Cognitive Maps from Visual Experience: A Differentiable VQ-VAE and Gradient-Trained Cloned HMM Pipeline
 
-**Arash Nikzad**<sup>1</sup>, **Sasan Sarbishegi**, **Ali Dasmeh**<sup>2</sup>, **Parsa Gharavi**<sup>1</sup>, **Erik Husom**<sup>3</sup>, **Sagar Sen**<sup>3</sup>, **Andrew B. Lehr**<sup>4,5</sup>, **Olivier Penacchio**<sup>6</sup>, **Ana Clemente**<sup>7</sup>, **Tristan M. Stöber**<sup>5,8,9</sup>
+**Arash Nikzad**<sup>1</sup>, **Sasan Sarbishegi**, **Ali Dasmeh**<sup>2</sup>, **Muhammad Asif**<sup>3</sup>  
+**Parsa Gharavi**<sup>1</sup>, **Erik Husom**<sup>4</sup>, **Sagar Sen**<sup>4</sup>, **Andrew B. Lehr**<sup>5,6</sup>, **Olivier Penacchio**<sup>7</sup>, **Ana Clemente**<sup>8</sup>, **Tristan M. Stöber**<sup>6,9,10</sup>  
 
 <sup>1</sup> Goethe University Frankfurt, Frankfurt, Germany  
 <sup>2</sup> Max Planck Institute for Human Development, Berlin, Germany  
-<sup>3</sup> SINTEF, Oslo, Norway  
-<sup>4</sup> Department of Neuro- and Sensory Physiology, University Medical Center Göttingen, Göttingen, Germany  
-<sup>5</sup> Circulant Labs, Bensheim, Germany  
-<sup>6</sup> Computer Science Department, Universitat Autònoma de Barcelona, Bellaterra, Spain  
-<sup>7</sup> Department of Cognitive Neuropsychology, Max Planck Institute for Empirical Aesthetics, Frankfurt, Germany  
-<sup>8</sup> Campus Institute Data Science, University of Göttingen, Göttingen, Germany  
-<sup>9</sup> Epilepsy Center Frankfurt Rhine-Main, Department of Neurology, Goethe University Frankfurt, Frankfurt, Germany  
+<sup>3</sup> Department of Cognitive Neuropsychology, Max Planck Institute for Empirical Aesthetics, Frankfurt, Germany  
+<sup>4</sup> SINTEF, Oslo, Norway  
+<sup>5</sup> Department of Neuro- and Sensory Physiology, University Medical Center Göttingen, Göttingen, Germany  
+<sup>6</sup> Circulant Labs, Bensheim, Germany  
+<sup>7</sup> Computer Science Department, Universitat Autònoma de Barcelona, Bellaterra, Spain  
+<sup>8</sup> Department of Cognitive Neuropsychology, Max Planck Institute for Empirical Aesthetics, Frankfurt, Germany  
+<sup>9</sup> Campus Institute Data Science, University of Göttingen, Göttingen, Germany  
+<sup>10</sup> Epilepsy Center Frankfurt Rhine-Main, Department of Neurology, Goethe University Frankfurt, Frankfurt, Germany
 
 ---
 
