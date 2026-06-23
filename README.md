@@ -291,7 +291,7 @@ The benchmark is a 2-D grid in which every cell carries a digit class. *Visiting
 
 ### 4.2 Environments
 
-We study five environments of increasing difficulty (Table 2): `aliased`, a $4\times4$ grid in which four digits each recur four times; `corridors`, a $5\times5$ grid with walls and repeated digits; two $6\times6$ rooms differing in clone allocation; and `two_rooms`, a $13\times9$ map of two offset, interconnected rooms — the largest and most aliased case. Figure 2 shows `two_rooms` rendered with one MNIST sample per cell.
+We study five environments of increasing difficulty (Table 2): `aliased`, a $4\times4$ grid in which four digits each recur four times; `corridors`, a $5\times5$ grid with walls and repeated digits; two $6\times6$ rooms differing in clone allocation; and `two_rooms`, a $13\times9$ map of two offset, interconnected rooms — the largest and most aliased case.
 
 **Table 2.** Benchmark environments.
 
@@ -303,10 +303,6 @@ We study five environments of increasing difficulty (Table 2): `aliased`, a $4\t
 | `room` (dynamic) | $6\times6$ | 10 | 57 |
 | `two_rooms` | $13\times9$ | 10 | 151 |
 
-![The two_rooms environment, each cell shown as one MNIST sample of its digit.](figures/environment.png)
-
-*Figure 2: The `two_rooms` environment, each cell shown as one MNIST sample of its digit. Cells that share a digit are perceptually aliased; the two rooms overlap through a shared corner.*
-
 ### 4.3 Protocol
 
 Trajectories are action-conditioned random walks (4–10 episodes of 10,000 steps). Each run executes VQ-VAE warmup, joint training (Phase 2/2.5) and finalization, then is evaluated on a held-out episode with the metrics of Section 3.9. An optional, benchmark-only auxiliary digit-classification loss may be used during VQ-VAE warmup; it is disableable, since in a general environment object classes are unknown.
@@ -317,31 +313,27 @@ Trajectories are action-conditioned random walks (4–10 episodes of 10,000 step
 
 ### 5.1 Perceptual discretization
 
-The VQ-VAE produces a clean, near-deterministic discretization. Across environments, mean tokens per cell is 1.0–1.2 and the conditional entropy $H(\text{token}\mid\text{place})$ is 0.09–0.23 nats: a place almost always emits a single token despite never being seen twice (Figure 3). Codebook perplexity tracks the number of digit classes (Figure 4), and reconstructions remain faithful (Figure 5), confirming that the codebook does not collapse under the joint objective.
-
-![Token-place alignment heatmaps for the aliased environment.](figures/token_cell_heatmap.png)
-
-*Figure 3: Token ↔ place alignment, shown for the `aliased` environment as a clear illustration; the pattern is representative of all environments. Top: $P(\text{token}\mid\text{place})$ — one bright entry per row (one token per place). Bottom: $P(\text{place}\mid\text{token})$ — each token spreads over the four aliased cells that share its digit, the environment's intrinsic aliasing.*
+The VQ-VAE produces a clean, near-deterministic discretization. Across environments, mean tokens per cell is 1.0–1.2 and the conditional entropy $H(\text{token}\mid\text{place})$ is 0.09–0.23 nats: a place almost always emits a single token despite never being seen twice. Codebook perplexity tracks the number of digit classes (Figure 2), and reconstructions remain faithful (Figure 3), confirming that the codebook does not collapse under the joint objective.
 
 ![Codebook utilization for two_rooms.](figures/codebook_usage.png)
 
-*Figure 4: Codebook utilization for `two_rooms`: all codes remain active; perplexity does not collapse during joint training.*
+*Figure 2: Codebook utilization for `two_rooms`: all codes remain active; perplexity does not collapse during joint training.*
 
 ![VQ-VAE inputs and reconstructions with assigned token ids.](figures/reconstructions.png)
 
-*Figure 5: Inputs (top) and VQ-VAE reconstructions (bottom) with the assigned token id. Reconstruction stays meaningful throughout joint training.*
+*Figure 3: Inputs (top) and VQ-VAE reconstructions (bottom) with the assigned token id. Reconstruction stays meaningful throughout joint training.*
 
 ### 5.2 Clone-state purity
 
-Decoded clone states map cleanly to physical places. The visit-weighted state-to-place purity is 0.95–0.98 across the four fully scored environments (Table 4), and every visited place is represented by at least one clone. The decoded clone graph (Figure 6) exposes the recovered topology directly: nodes are clone states drawn as the MNIST digit they represent, and edges are the action-conditioned transitions actually taken.
+Decoded clone states map cleanly to physical places. The visit-weighted state-to-place purity is 0.95–0.98 across the four fully scored environments (Table 4), and every visited place is represented by at least one clone. The decoded clone graph (Figure 4) exposes the recovered topology directly: nodes are clone states drawn as the MNIST digit they represent, and edges are the action-conditioned transitions actually taken.
 
 ![Decoded clone-state graph for two_rooms.](figures/viterbi_graph.png)
 
-*Figure 6: Decoded clone-state graph for `two_rooms`; each node is drawn as an MNIST sample of the digit it represents, edges are Viterbi-path transitions. The two-room layout is visible in the latent graph.*
+*Figure 4: Decoded clone-state graph for `two_rooms`; each node is drawn as an MNIST sample of the digit it represents, edges are Viterbi-path transitions. The two-room layout is visible in the latent graph.*
 
 ### 5.3 Topological map recovery
 
-The central result is that the learned latent graph *contains* the true environment graph. Map-edge **recall is 1.00 in every scored run** — no physical adjacency is missed. The open difficulty is precision: at a low threshold the projected graph also includes many weak false edges. A threshold sweep makes the trade-off explicit (Table 3): on `corridors`, precision rises from 0.24 at $\eta=0.01$ to 0.77 at $\eta=0.3$ while recall stays at 1.00, lifting F1 to 0.87. The best-threshold F1 is 0.67–0.87 across environments (Table 4). Figure 7 shows the projected map for `two_rooms`: every true edge (green) is recovered and the false edges (red) are the residual weak transitions.
+The central result is that the learned latent graph *contains* the true environment graph. Map-edge **recall is 1.00 in every scored run** — no physical adjacency is missed. The open difficulty is precision: at a low threshold the projected graph also includes many weak false edges. A threshold sweep makes the trade-off explicit (Table 3): on `corridors`, precision rises from 0.24 at $\eta=0.01$ to 0.77 at $\eta=0.3$ while recall stays at 1.00, lifting F1 to 0.87. The best-threshold F1 is 0.67–0.87 across environments (Table 4).
 
 **Table 3.** Edge-threshold sweep on `corridors`. Recall is 1.00 throughout; precision and F1 increase with the threshold $\eta$.
 
@@ -350,10 +342,6 @@ The central result is that the learned latent graph *contains* the true environm
 | Precision | 0.24 | 0.29 | 0.39 | 0.77 |
 | Recall | 1.00 | 1.00 | 1.00 | 1.00 |
 | F1 | 0.39 | 0.45 | 0.56 | **0.87** |
-
-![Learned map for two_rooms projected onto the true grid.](figures/projected_physical_graph.png)
-
-*Figure 7: Learned map for `two_rooms` projected onto the true grid. Green: correctly recovered edges; red: false edges; grey dashed: missed edges (none). Node colour encodes the observation digit.*
 
 ### 5.4 Cross-environment summary
 
@@ -371,11 +359,11 @@ Table 4 collects all results. The pipeline succeeds on every environment, includ
 
 ### 5.5 Training dynamics
 
-Figure 8 shows the loss trajectories. Reconstruction is stable across joint training; the length-normalized HMM term decreases steadily once $\lambda_t$ ramps in; and the finalization phase produces a further sharp drop in HMM NLL with the encoder frozen — consistent with the role of the balancing terms in Section 3.6.
+Figure 5 shows the loss trajectories. Reconstruction is stable across joint training; the length-normalized HMM term decreases steadily once $\lambda_t$ ramps in; and the finalization phase produces a further sharp drop in HMM NLL with the encoder frozen — consistent with the role of the balancing terms in Section 3.6.
 
 ![Training curves for two_rooms.](figures/loss_curves.png)
 
-*Figure 8: Training curves for `two_rooms`: VQ-VAE warmup, joint-phase components (reconstruction, commitment, length-normalized HMM term, diversity), and the pure-HMM finalization phase.*
+*Figure 5: Training curves for `two_rooms`: VQ-VAE warmup, joint-phase components (reconstruction, commitment, length-normalized HMM term, diversity), and the pure-HMM finalization phase.*
 
 ---
 
