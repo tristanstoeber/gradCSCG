@@ -11,7 +11,7 @@
 <sup>7</sup> Computer Science Department, Universitat Autònoma de Barcelona, Bellaterra, Spain  
 <sup>8</sup> Campus Institute Data Science, University of Göttingen, Göttingen, Germany  
 <sup>9</sup> Epilepsy Center Frankfurt Rhine-Main, Department of Neurology, Goethe University Frankfurt, Frankfurt, Germany
----
+
 
 ## Abstract
 
