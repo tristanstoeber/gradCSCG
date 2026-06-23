@@ -289,10 +289,12 @@ $$
 where $x_t$ denotes the sensory observation received at time $t$, and $a_t$ denotes the action taken before the next observation. The true position of the agent is not provided to the model. The learning problem is to infer the latent spatial topology and explicit map of the environment.
 
 To introduce perceptual complexity, we replace symbolic cell observations with MNIST-based visual observations. Each grid cell $v$ is assigned a digit label $d(v)\in\{0,\dots,9\}$. When the agent visits cell $v_t$, it receives a randomly sampled MNIST image from the corresponding digit class,
+
 $$
 x_t \sim \mathcal{D}_{d(v_t)},
 $$
-where $\mathcal{D}_{d(v_t)}$ is the empirical MNIST distribution for digit $d(v_t)$. Thus, repeated visits to the same cell do not produce identical pixel observations, while different cells assigned the same digit class can generate visually similar observations.
+
+where $`\mathcal{D}_{d(v_t)}`$ is the empirical MNIST distribution for digit $d(v_t)$. Thus, repeated visits to the same cell do not produce identical pixel observations, while different cells assigned the same digit class can generate visually similar observations.
 
 This extension preserves the controlled topology-recovery setting of the original grid-world benchmark while adding a perceptual front end. In the symbolic setting, the observation token is given directly. In our benchmark, the model must first map variable high-dimensional images to stable discrete observation tokens before using temporal context and actions to resolve aliasing. This makes the task more challenging and provides a more realistic test of whether temporal structure learning can be coupled with learned visual representations.
 
