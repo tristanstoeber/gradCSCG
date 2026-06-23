@@ -54,7 +54,7 @@ flowchart LR
     vq -->|"q̃_t"| dec["Decoder D_ψ"]
     dec --> rec(["ℒ_rec"])
     enc --> soft["Soft posterior ρ_t over K codes"]
-    soft -->|"log ρ_t"| hmm["Cloned-HMM forward (soft)"]
+    soft -->|"log ρ_t"| hmm["gradCSCG forward (soft)"]
     hmm --> nll(["ℒ_HMM"])
     rec -. grad .-> dec
     nll -. grad .-> hmm
