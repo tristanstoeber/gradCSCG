@@ -62,7 +62,7 @@ flowchart LR
     soft -. grad .-> enc
 ```
 
-***Figure 1: The gradCSCG pipeline.*** *Solid arrows: forward computation. Dashed arrows: gradient flow. The encoder feeds both a reconstruction branch (hard quantization $\tilde q_t$ + decoder) and a sequence branch (soft codebook posterior $\rho_t$ + differentiable cloned-HMM forward pass). Because the HMM likelihood is differentiable in $\rho_t$, the topological objective $\mathcal{L}_{\mathrm{HMM}}$ shapes the encoder. The codebook itself is updated by EMA, not by gradients.*
+***Figure 1: The gradCSCG pipeline.*** *Solid arrows: forward computation. Dashed arrows: gradient flow. The encoder feeds both a reconstruction branch (hard quantization $`\tilde q_t`$ + decoder) and a sequence branch (soft codebook posterior $`\rho_t`$ + differentiable cloned-HMM forward pass). Because the HMM likelihood is differentiable in $`\rho_t`$, the topological objective $`\mathcal{L}_{\mathrm{HMM}}`$ shapes the encoder. The codebook itself is updated by EMA, not by gradients.*
 
 ### 3.2 Perceptual front-end: VQ-VAE
 
