@@ -23,12 +23,12 @@ Building a structured internal model of an environment from a stream of raw obse
 
 ## 1. Introduction
 Evaluating future scenarios by mental time travel is a hallmark of intelligence and requires an internal representation of the world. To build such a world model, also called cognitive map, brains or artificial agents have to infer structural knowledge from sequential interactions with the environment. Understanding and reengineering world model learning is a fundamental problem in both neuroscience 
-<!--
-1.	O’Keefe, J. & Nadel, L. The Hippocampus as a Cognitive Map. vol. 3 (Clarendon Press Oxford, 1978). 
+<!-- O’Keefe, J. & Nadel, L. The Hippocampus as a Cognitive Map. vol. 3 (Clarendon Press Oxford, 1978). 
 2.	Stachenfeld, K. L., Botvinick, M. M. & Gershman, S. J. The hippocampus as a predictive map. Nat. Neurosci. 20, 1643–1653 (2017). 
 3.	Whittington, J. C. R., McCaffary, D., Bakermans, J. J. W. & Behrens, T. E. J. How to build a cognitive map. Nat. Neurosci. 25, 1257–1272 (2022). 
 4.	Cone, I. & Clopath, C. Latent representations in hippocampal network model co-evolve with behavioral exploration of task structure. Nat. Commun. 15, 687 (2024). 
-5.	Chandra, S., Sharma, S., Chaudhuri, R. & Fiete, I. Episodic and associative memory from spatial scaffolds in the hippocampus. Nature 1–13 (2025) doi:10.1038/s41586-024-08392-y. --> and artificial intelligence (AI)  
+5.	Chandra, S., Sharma, S., Chaudhuri, R. & Fiete, I. Episodic and associative memory from spatial scaffolds in the hippocampus. Nature 1–13 (2025) doi:10.1038/s41586-024-08392-y. -->
+and artificial intelligence (AI)  
 <!--6.	Lake, B. M., Ullman, T. D., Tenenbaum, J. B. & Gershman, S. J. Building machines that learn and think like people. Behav. Brain Sci. 40, (2017). 
 7.	Diester, I. et al. Internal world models in humans, animals, and AI. Neuron 112, 2265–2268 (2024). 
 8.	Friston, K. et al. World model learning and inference. Neural Netw. 144, 573–590 (2021).
