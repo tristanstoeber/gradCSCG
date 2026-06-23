@@ -81,16 +81,16 @@ $$k_t=\arg\min_{k\in\{1,\dots,K\}}\;\lVert z_t-e_k\rVert_2^2, \qquad q_t=e_{k_t}
 
 where the squared distance is computed as $\lVert z-e_k\rVert_2^2=\lVert z\rVert_2^2-2\langle z,e_k\rangle+\lVert e_k\rVert_2^2$. Gradients cross the non-differentiable $\arg\min$ by the straight-through estimator [6],
 
-$$\tilde q_t = z_t + \operatorname{sg}(q_t-z_t),$$
+$$\tilde q_t = z_t + {sg}(q_t-z_t),$$
 
-where $\operatorname{sg}(\cdot)$ is the stop-gradient operator, so the forward value is $q_t$ while $\partial\tilde q_t/\partial z_t=I$. A decoder $D_\psi$ reconstructs $\hat x_t=D_\psi(\tilde q_t)$.
+where ${sg}(\cdot)$ is the stop-gradient operator, so the forward value is $q_t$ while $\partial\tilde q_t/\partial z_t=I$. A decoder $D_\psi$ reconstructs $\hat x_t=D_\psi(\tilde q_t)$.
 
 **Losses.**
 Over a minibatch $\mathcal{B}$,
 
 $$\mathcal{L}_{\mathrm{rec}} = \tfrac{1}{|\mathcal{B}|}\sum_{t} \lVert x_t-\hat x_t\rVert_2^2,$$
 
-$$\mathcal{L}_{\mathrm{commit}} = \tfrac{1}{|\mathcal{B}|}\sum_{t} \lVert \operatorname{sg}(q_t)-z_t\rVert_2^2,$$
+$$\mathcal{L}_{\mathrm{commit}} = \tfrac{1}{|\mathcal{B}|}\sum_{t} \lVert {sg}(q_t)-z_t\rVert_2^2,$$
 
 the second term pulling encoder outputs toward their assigned code.
 
@@ -109,7 +109,7 @@ $$\hat n_k=\frac{n_k+\epsilon}{\left(\sum_{k'}n_{k'}\right)+K\epsilon}\left(\sum
 **Soft codebook posterior.**
 For the differentiable coupling (Section 3.5) the encoder also emits a temperature-controlled posterior over the codebook,
 
-$$\log\rho_t(k) = \log\operatorname{softmax}_{k}\left(-\lVert z_t-e_k\rVert_2^2/\tau\right),$$
+$$\log\rho_t(k) = \log{softmax}_{k}\left(-\lVert z_t-e_k\rVert_2^2/\tau\right),$$
 
 which is differentiable in $z_t$. As $\tau\to0$, $\rho_t$ concentrates on $k_t$ and this recovers the hard assignment.
 
@@ -125,25 +125,25 @@ and the sink emits no real token. Clones are exactly the mechanism that disambig
 **Parameters.**
 The model has initial-state logits $\pi\in\mathbb{R}^{N}$ and action-conditioned transition logits $\Theta\in\mathbb{R}^{A\times N\times N}$, yielding
 
-$$\bar\pi=\operatorname{softmax}(\pi),\qquad T_{a,i,j}=\operatorname{softmax}_{j}\left(\Theta_{a,i,\cdot}\right).$$
+$$\bar\pi={softmax}(\pi),\qquad T_{a,i,j}={softmax}_{j}\left(\Theta_{a,i,\cdot}\right).$$
 
 All learning resides in $(\pi,\Theta)$; emissions are fixed.
 
 **Forward likelihood.**
-Writing $\operatorname*{logsumexp}_i u_i=\log\sum_i e^{u_i}$, the log-forward messages for an episode $(o_{1:T},a_{1:T-1})$ obey
+Writing $*{logsumexp}_i u_i=\log\sum_i e^{u_i}$, the log-forward messages for an episode $(o_{1:T},a_{1:T-1})$ obey
 
 $$\begin{aligned}
 \log\alpha_1(j) ={}& \log\bar\pi_j+\log B_{j,o_1},\\
-\log\alpha_{t+1}(j) ={}& \operatorname*{logsumexp}_{i}\left[\log\alpha_t(i)+\log T_{a_t,i,j}\right] + \log B_{j,o_{t+1}},
+\log\alpha_{t+1}(j) ={}& *{logsumexp}_{i}\left[\log\alpha_t(i)+\log T_{a_t,i,j}\right] + \log B_{j,o_{t+1}},
 \end{aligned}$$
 
-and the episode log-likelihood is $\ell(o_{1:T}\mid a_{1:T-1})=\operatorname*{logsumexp}_{j}\log\alpha_T(j)$. The training loss is the mean negative log-likelihood (NLL)
+and the episode log-likelihood is $\ell(o_{1:T}\mid a_{1:T-1})=*{logsumexp}_{j}\log\alpha_T(j)$. The training loss is the mean negative log-likelihood (NLL)
 
 $$\mathcal{L}_{\mathrm{HMM}}=-\tfrac{1}{|\mathcal{B}|}\sum_{(o,a)\in\mathcal{B}}\ell(o_{1:T}\mid a_{1:T-1}).$$
 
 ### 3.4 Gradient-based training of the cloned HMM
 
-Unlike the classical EM training of cloned HMMs, we evaluate the forward recursion and NLL loss as a single differentiable, log-space computational graph (a masked time recursion over padded minibatches) and optimize $(\pi,\Theta)$ directly by stochastic gradient descent with Adam [8]. Log-space arithmetic with $\operatorname*{logsumexp}$ keeps the recursion numerically stable over long episodes. This gradient formulation is what makes the sequence model composable with a neural front-end.
+Unlike the classical EM training of cloned HMMs, we evaluate the forward recursion and NLL loss as a single differentiable, log-space computational graph (a masked time recursion over padded minibatches) and optimize $(\pi,\Theta)$ directly by stochastic gradient descent with Adam [8]. Log-space arithmetic with $*{logsumexp}$ keeps the recursion numerically stable over long episodes. This gradient formulation is what makes the sequence model composable with a neural front-end.
 
 ### 3.5 Differentiable soft-emission coupling
 
@@ -151,7 +151,7 @@ To let the topological objective shape perception, we replace the hard emission 
 
 $$\begin{aligned}
 \log\alpha^{s}_1(j) ={}& \log\bar\pi_j+\log\rho_1\left(\omega(j)\right),\\
-\log\alpha^{s}_{t+1}(j) ={}& \operatorname*{logsumexp}_{i}\left[\log\alpha^{s}_t(i)+\log T_{a_t,i,j}\right] + \log\rho_{t+1}\left(\omega(j)\right),
+\log\alpha^{s}_{t+1}(j) ={}& *{logsumexp}_{i}\left[\log\alpha^{s}_t(i)+\log T_{a_t,i,j}\right] + \log\rho_{t+1}\left(\omega(j)\right),
 \end{aligned}$$
 
 with the sink assigned $\log\rho_t(\bot)=-\infty$. The resulting log-likelihood $\ell^{s}$ is differentiable in $\rho_{1:T}$ and hence, through the soft posterior, in the encoder parameters $\phi$. Two properties hold by construction:
@@ -196,7 +196,7 @@ During Phase 2 we monitor codebook perplexity and keep the highest-perplexity ch
 > 1. $z_t \gets E_\phi(x_t)$ &nbsp; *(encode)*
 > 2. $q_t,\tilde q_t \gets \text{quantize}(z_t)$; update codebook by EMA
 > 3. $\hat x_t \gets D_\psi(\tilde q_t)$; &nbsp; $\mathcal{L}_{\mathrm{rec}},\mathcal{L}_{\mathrm{commit}} \gets$ Eq. (3)–(4)
-> 4. $\log\rho_t \gets \log\operatorname{softmax}(-\lVert z_t-e_\cdot\rVert^2/\tau)$
+> 4. $\log\rho_t \gets \log{softmax}(-\lVert z_t-e_\cdot\rVert^2/\tau)$
 > 5. $\ell^{s}\gets$ soft forward pass, Eq. (12)–(13)
 > 6. $\widetilde{\mathcal{L}}_{\mathrm{HMM}}\gets -\ell^{s}/T$; &nbsp; $\mathcal{L}_{\mathrm{div}}\gets \log K-H(\bar\rho)$
 > 7. $\mathcal{L}_{\mathrm{joint}}\gets$ Eq. (11)
