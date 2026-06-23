@@ -22,23 +22,11 @@ Building a structured internal model of an environment from a stream of raw obse
 ---
 
 ## 1. Introduction
-Evaluating future scenarios by mental time travel is a hallmark of intelligence and requires an internal representation of the world. To build such a world model, also called cognitive map, brains or artificial agents have to infer structural knowledge from sequential interactions with the environment. Understanding and reengineering world model learning is a fundamental problem in both neuroscience 
-<!-- O’Keefe, J. & Nadel, L. The Hippocampus as a Cognitive Map. vol. 3 (Clarendon Press Oxford, 1978). 
-2.	Stachenfeld, K. L., Botvinick, M. M. & Gershman, S. J. The hippocampus as a predictive map. Nat. Neurosci. 20, 1643–1653 (2017). 
-3.	Whittington, J. C. R., McCaffary, D., Bakermans, J. J. W. & Behrens, T. E. J. How to build a cognitive map. Nat. Neurosci. 25, 1257–1272 (2022). 
-4.	Cone, I. & Clopath, C. Latent representations in hippocampal network model co-evolve with behavioral exploration of task structure. Nat. Commun. 15, 687 (2024). 
-5.	Chandra, S., Sharma, S., Chaudhuri, R. & Fiete, I. Episodic and associative memory from spatial scaffolds in the hippocampus. Nature 1–13 (2025) doi:10.1038/s41586-024-08392-y. -->
-and artificial intelligence (AI)  
-<!--6.	Lake, B. M., Ullman, T. D., Tenenbaum, J. B. & Gershman, S. J. Building machines that learn and think like people. Behav. Brain Sci. 40, (2017). 
-7.	Diester, I. et al. Internal world models in humans, animals, and AI. Neuron 112, 2265–2268 (2024). 
-8.	Friston, K. et al. World model learning and inference. Neural Netw. 144, 573–590 (2021).
--->
+Well-structured internal representations allow biological and artificial agents to pick shortcuts on routes never taken and to provide guidance in situations where trial-and-error learning would be fatal. Thus, understanding and reengineering the emergence of such representations is an outstanding challenge both in neuroscience [1–5] and artificial intelligence (AI) [6–8].
 
-An agent moving through the world receives a stream of high-dimensional sensory observations together with a record of its own actions. From this stream alone, can it construct a *cognitive map* — a structured internal model that recovers the relational and topological structure of the environment [1]? This question is central both to machine learning, where it underlies world models and navigation, and to systems neuroscience, where the hippocampal–entorhinal system is the canonical substrate of spatial and relational maps.
+The **Clone-Structured Cognitive Graph** (CSCG) [9, 10], a normative hippocampus model, explains how well-structured representations may emerge from sensory sequence learning. CSCG compresses a series of observation–action pairs into a higher-order representation of its environment. While technically an overcomplete hidden Markov model (HMM) with a fixed emission matrix, it learns to disambiguate contexts from aliased observations. Obeying the Markov property — i.e. any subsequent state depends only on the current state — CSCG is forced to represent a novel context with a new clone among its hidden nodes. The graph emerging from this cloning operation provides a condensed map of the environment and is suitable for planning, consolidation and abstraction. However, while elegantly creating well-structured representations in static and relatively small environments, it is unclear how to extend this approach to richer, perceptually complex observations.
 
-Learning such a map from raw perception is hard for three coupled reasons. *(i) Perceptual aliasing:* the same place can look different across visits, and distinct places can look identical, so raw appearance is not a reliable identity signal. *(ii) Discretization:* sequence models that provably recover topology — in particular the Clone-Structured Cognitive Graph (CSCG) [2], a cloned hidden Markov model — assume a *discrete* observation alphabet, whereas a real agent observes pixels. *(iii) Cooperation:* a perception module trained only to reconstruct images has no incentive to produce *sequence-friendly* tokens, and a sequence model handed unstable tokens cannot recover structure.
-
-Existing components address these difficulties only in isolation. The CSCG recovers topology but takes the discrete alphabet as given. The VQ-VAE [4, 5] learns a discrete codebook but optimizes reconstruction alone. **No existing pipeline trains the perceptual discretizer and the topological sequence model together so that perception becomes sequence-aware.** Closing that gap is the subject of this paper.
+The bottleneck is that CSCG is trained by Expectation–Maximization over a fixed, discrete observation alphabet, which prevents seamless composition with gradient-trained neural modules. We resolve this by reimplementing the cloned HMM as a single differentiable, gradient-trained computation [11] in TensorFlow, which lets us co-train it with a vector-quantized variational autoencoder (VQ-VAE). We demonstrate that this approach preserves CSCG's expressivity while enabling it to handle sensory variability and complexity in an environment composed of MNIST digits.
 
 **Contributions.**
 
@@ -47,19 +35,6 @@ Existing components address these difficulties only in isolation. The CSCG recov
 3. **Loss-balancing for stable joint training** — length normalization, weight annealing, a diversity penalty, and anti-collapse safeguards (Section 3.6).
 4. A formal, reusable **topology-recovery evaluation suite** (Section 3.10).
 5. An empirical study on five MNIST grid-world environments with strong aliasing (Sections 4–5).
-
----
-
-## 2. Related Work
-
-**Discrete representation learning.**
-The VQ-VAE [4] introduced a learned discrete bottleneck trained with a straight-through estimator [6] and a commitment loss; [5] stabilized the codebook with exponential-moving-average (EMA) updates. These models optimize reconstruction; they are not trained for downstream sequential structure, which is the coupling we add.
-
-**Cloned HMMs and cognitive maps.**
-The CSCG [2] is an action-augmented cloned HMM in which each observation symbol owns several latent "clones"; clones with identical emissions but different transition contexts disambiguate perceptual aliasing and yield interpretable maps. Cloned HMMs are classically trained by Expectation–Maximization. The Tolman–Eichenbaum Machine [3] is a related neural account of relational memory. We retain the CSCG model class but make its training *gradient-based*, which is what allows it to be composed with a neural front-end.
-
-**HMM inference.**
-The forward and Viterbi algorithms [7] underlie our likelihood and decoding; our contribution is to express the forward recursion as a differentiable log-space graph and to admit *soft* emissions so that the likelihood is differentiable in the encoder output.
 
 ---
 
