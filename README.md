@@ -219,7 +219,7 @@ In Phase 1, codes never emitted by the trained encoder are pruned and the alphab
 
 ### 3.9 Evaluation metrics
 
-All metrics are computed from the decoded path $s^\star_{1:T}$ of a held-out episode together with the ground-truth places $g_{1:T}$ and edges $\mathcal{E}$ (used only here, never in training). Let $\mathcal{V}$ be the set of visited states and $n(s,g)=\#\{t:s^\star_t=s,\;g_t=g\}$.
+All metrics are computed from the decoded path $s^\star_{1:T}$ of a held-out episode together with the ground-truth places $g_{1:T}$ and edges $\mathcal{E}$ (used only here, never in training). Let $\mathcal{V}$ be the set of visited states and $n(s,g)=\sharp\{t:s^\star_t=s,\;g_t=g\}$.
 
 **State-to-place assignment.**
 Each visited state is mapped to its majority place, $\chi(s)=\arg\max_{g}n(s,g)$.
