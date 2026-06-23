@@ -108,7 +108,7 @@ which is differentiable in $z_t$. As $\tau\to0$, $\rho_t$ concentrates on $k_t$ 
 ### 3.3 Sequence model: action-conditioned cloned HMM
 
 **State space and clone structure.**
-Each token $k$ is assigned $C_k\ge1$ *clones* — latent states that all emit token $k$ but participate in different transition contexts. With a trailing *sink* state $\bot$, the state space is $\mathcal{S}=\{1,\dots,N\}$ with $N=1+\sum_{k=1}^{K}C_k$. A fixed map $\omega:\mathcal{S}\setminus\{\bot\}\to\{1,\dots,K\}$ gives the token each state emits; in the uniform case $C_k\equiv C$ and $\omega(s)=\lceil s/C\rceil$. Emissions are *deterministic*:
+Each token $k$ is assigned $C_k\ge1$ *clones* — latent states that all emit token $k$ but participate in different transition contexts. With a trailing *sink* state $\bot$, the state space is $\mathcal{S}=\{1,\dots,N\}$ with $N=1+\sum_{k=1}^{K}C_k$. The sink state is a special terminal state that does not correspond to any visual token; it is used to absorb probability mass at the end of a sequence and to make sequence termination explicit in the HMM formulation. A fixed map $\omega:\mathcal{S}\setminus\{\bot\}\to\{1,\dots,K\}$ gives the token each state emits; in the uniform case $C_k\equiv C$ and $\omega(s)=\lceil s/C\rceil$. Emissions are *deterministic*:
 
 $$B_{s,o}=\mathbb{1}[\omega(s)=o],\qquad \log B_{s,o}=\begin{cases}0,&\omega(s)=o \\\\ -\infty,&\text{otherwise,}\end{cases}$$
 
