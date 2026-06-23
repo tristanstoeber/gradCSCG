@@ -1,18 +1,16 @@
 # Learning Cognitive Maps from Visual Experience: A Differentiable VQ-VAE and Gradient-Trained Cloned HMM Pipeline
 
-**Arash Nikzad**<sup>1</sup>, **Sasan Sarbishegi**, **Ali Dasmeh**<sup>2</sup>, **Parsa Gharavi**<sup>1</sup>, **Erik Husom**<sup>3</sup>, **Sagar Sen**<sup>3</sup>, **Andrew Lehr**<sup>4</sup>, **Olivier Penacchio**<sup>5</sup>, **Ana Clemente**<sup>6</sup>, **Tristan Stöber**<sup>7,8,9</sup>
+**Arash Nikzad**<sup>1</sup>, **Sasan Sarbishegi**, **Ali Dasmeh**<sup>2</sup>, **Parsa Gharavi**<sup>1</sup>, **Erik Husom**<sup>3</sup>, **Sagar Sen**<sup>3</sup>, **Andrew Lehr**<sup>4,5</sup>, **Olivier Penacchio**<sup>6</sup>, **Ana Clemente**<sup>7</sup>, **Tristan Stöber**<sup>5,8,9</sup>
 
 <sup>1</sup> Goethe University Frankfurt, Frankfurt, Germany  
 <sup>2</sup> [Max Planck Institute for Human Development](https://www.mpib-berlin.mpg.de/staff/ali-dasmeh), Berlin, Germany  
 <sup>3</sup> SINTEF, Oslo, Norway  
 <sup>4</sup> Department of Neuro- and Sensory Physiology, University Medical Center Göttingen, Göttingen, Germany  
-<sup>5</sup> Computer Science Department, Universitat Autònoma de Barcelona, Bellaterra, Spain  
-<sup>6</sup> Department of Cognitive Neuropsychology, Max Planck Institute for Empirical Aesthetics, Frankfurt, Germany  
-<sup>7</sup> Campus Institute Data Science, University of Göttingen, Göttingen, Germany  
-<sup>8</sup> Epilepsy Center Frankfurt Rhine-Main, Department of Neurology, Goethe University Frankfurt, Frankfurt, Germany  
-<sup>9</sup> Circulant Labs, Bensheim, Germany  
-
-*Preprint.*
+<sup>5</sup> Circulant Labs, Bensheim, Germany  
+<sup>6</sup> Computer Science Department, Universitat Autònoma de Barcelona, Bellaterra, Spain  
+<sup>7</sup> Department of Cognitive Neuropsychology, Max Planck Institute for Empirical Aesthetics, Frankfurt, Germany  
+<sup>8</sup> Campus Institute Data Science, University of Göttingen, Göttingen, Germany  
+<sup>9</sup> Epilepsy Center Frankfurt Rhine-Main, Department of Neurology, Goethe University Frankfurt, Frankfurt, Germany  
 
 ---
 
