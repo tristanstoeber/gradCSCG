@@ -198,10 +198,10 @@ During Phase 2 we monitor codebook perplexity and keep the highest-perplexity ch
 >
 > 1. $z_t \gets E_\phi(x_t)$ &nbsp; *(encode)*
 > 2. $q_t,\tilde q_t \gets \text{quantize}(z_t)$; update codebook by EMA
-> 3. $\hat x_t \gets D_\psi(\tilde q_t)$; &nbsp; $\mathcal{L}_{\mathrm{rec}},\mathcal{L}_{\mathrm{commit}} \gets$ reconstruction and commitment losses (Section 3.2)
+> 3. $\hat x_t \gets D_\psi(\tilde q_t)$; &nbsp; $`\mathcal{L}_{\mathrm{rec}},\mathcal{L}_{\mathrm{commit}} \gets`$ reconstruction and commitment losses (Section 3.2)
 > 4. $\log\rho_t \gets \log\mathrm{softmax}(-\lVert z_t-e_\cdot\rVert^2/\tau)$
 > 5. $\ell^{s}\gets$ soft forward pass (Section 3.5)
-> 6. $\widetilde{\mathcal{L}}_{\mathrm{gradCSCG}}\gets -\ell^{s}/T$; &nbsp; $\mathcal{L}_{\mathrm{div}}\gets \log K-H(\bar\rho)$
+> 6. $`\widetilde{\mathcal{L}}_{\mathrm{gradCSCG}}\gets -\ell^{s}/T`$; &nbsp; $`\mathcal{L}_{\mathrm{div}}\gets \log K-H(\bar\rho)`$
 > 7. $\mathcal{L}_{\mathrm{joint}}\gets$ combined objective (Section 3.6)
 > 8. update $(\phi,\psi,\pi,\Theta)$ with Adam on $\nabla\mathcal{L}_{\mathrm{joint}}$
 
