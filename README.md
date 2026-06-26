@@ -31,8 +31,7 @@ We resolve this by reimplementing CSCG as a single differentiable, gradient-trai
 
 **Contributions**
 
-1. An **end-to-end pipeline** that maps raw images to a topological cognitive map by coupling a VQ-VAE to **gradCSCG**, a gradient-trained action-conditioned cloned HMM (Section 3).
-2. A **differentiable, soft-emission formulation of gradCSCG**: the forward algorithm is implemented as a differentiable log-space computation, so the sequence objective can be trained by backpropagation and gradients reach the perceptual front-end (Sections 3.3–3.5).
+1. An **end-to-end trainable pipeline composed of a gradient-based CSGG and a VQ-VAE** able to create a topological map from sequences of images
 3. **Loss-balancing for stable joint training** — length normalization, weight annealing, a diversity penalty, and anti-collapse safeguards (Section 3.6).
 4. A formal, reusable **topology-recovery evaluation suite** (Section 3.10).
 5. An empirical study on four MNIST grid-world environments with strong aliasing (Sections 4–5).
