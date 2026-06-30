@@ -8,8 +8,8 @@
 <sup>5</sup> Department of Neuro- and Sensory Physiology, University Medical Center Göttingen, Göttingen, Germany  
 <sup>6</sup> Circulant Labs, Bensheim, Germany  
 <sup>7</sup> Institute of Computer Science and Campus Institute Data Science, University Göttingen, Germany  
-<sup>8</sup> Bridging Research in AI and Neuroscience (brAIN), Computer Vision Center, Bellaterra, Spain
-<sup>9</sup> Computer Science Department, Universitat Autònoma de Barcelona, Bellaterra, Spain
+<sup>8</sup> Bridging Research in AI and Neuroscience (brAIN), Computer Vision Center, Bellaterra, Spain  
+<sup>9</sup> Computer Science Department, Universitat Autònoma de Barcelona, Bellaterra, Spain  
 <sup>10</sup> Epilepsy Center Frankfurt Rhine-Main, Department of Neurology, Goethe University Frankfurt, Frankfurt, Germany
 
 
