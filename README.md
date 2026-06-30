@@ -1,16 +1,16 @@
 # Differentiable Clone-Structured Causal Graphs for End-to-End Cognitive Map Learning from Image Sequences
-**Arash Nikzad**<sup>1</sup>, **Sasan Sarbishegi**, **Ali Dasmeh**<sup>2</sup>, **Muhammad Asif**<sup>3</sup>, **Parsa Gharavi**<sup>1</sup>, **Erik Husom**<sup>4</sup>, **Sagar Sen**<sup>4</sup>, **Andrew B. Lehr**<sup>5,6,7</sup>, **Olivier Penacchio**<sup>8,9</sup>, **Ana Clemente**<sup>3</sup>, **Tristan M. Stöber**<sup>6,7,10</sup>  
+**Arash Nikzad**<sup>1</sup>, **Sasan Sarbishegi**, **Ali Dasmeh**<sup>2</sup>, **Muhammad Asif**<sup>3</sup>, **Parsa Gharavi**<sup>1</sup>, **Erik Husom**<sup>4</sup>, **Sagar Sen**<sup>4</sup>, **Andrew B. Lehr**<sup>5,6,10</sup>, **Olivier Penacchio**<sup>7,8</sup>, **Ana Clemente**<sup>3</sup>, **Tristan M. Stöber**<sup>6,9,10</sup>  
 
 <sup>1</sup> Goethe University Frankfurt, Frankfurt, Germany  
 <sup>2</sup> Max Planck Institute for Human Development, Berlin, Germany  
 <sup>3</sup> Department of Cognitive Neuropsychology, Max Planck Institute for Empirical Aesthetics, Frankfurt, Germany  
 <sup>4</sup> SINTEF, Oslo, Norway  
 <sup>5</sup> Department of Neuro- and Sensory Physiology, University Medical Center Göttingen, Göttingen, Germany  
-<sup>6</sup> Circulant Labs, Bensheim, Germany  
-<sup>7</sup> Institute of Computer Science and Campus Institute Data Science, University Göttingen, Germany  
-<sup>8</sup> Bridging Research in AI and Neuroscience (brAIN), Computer Vision Center, Bellaterra, Spain  
-<sup>9</sup> Computer Science Department, Universitat Autònoma de Barcelona, Bellaterra, Spain  
-<sup>10</sup> Epilepsy Center Frankfurt Rhine-Main, Department of Neurology, Goethe University Frankfurt, Frankfurt, Germany
+<sup>6</sup> Institute of Computer Science and Campus Institute Data Science, University Göttingen, Germany  
+<sup>7</sup> Bridging Research in AI and Neuroscience (brAIN), Computer Vision Center, Bellaterra, Spain  
+<sup>8</sup> Computer Science Department, Universitat Autònoma de Barcelona, Bellaterra, Spain  
+<sup>9</sup> Epilepsy Center Frankfurt Rhine-Main, Department of Neurology, Goethe University Frankfurt, Frankfurt, Germany  
+<sup>10</sup> Circulant Labs, Bensheim, Germany
 
 
 ## Abstract
