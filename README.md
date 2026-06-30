@@ -10,7 +10,7 @@
 <sup>7</sup> Institute of Computer Science and Campus Institute Data Science, University Göttingen, Germany  
 <sup>8</sup> Bridging Research in AI and Neuroscience (brAIN), Computer Vision Center, Bellaterra, Spain
 <sup>9</sup> Computer Science Department, Universitat Autònoma de Barcelona, Bellaterra, Spain
-<sup>1+</sup> Epilepsy Center Frankfurt Rhine-Main, Department of Neurology, Goethe University Frankfurt, Frankfurt, Germany
+<sup>10</sup> Epilepsy Center Frankfurt Rhine-Main, Department of Neurology, Goethe University Frankfurt, Frankfurt, Germany
 
 
 ## Abstract
